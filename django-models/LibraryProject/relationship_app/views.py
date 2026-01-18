@@ -8,11 +8,9 @@ from .query_samples import query_books_by_author, list_books_in_library, get_lib
 
 # Create your views here.
 
-def book_list_view(request):
-    books = Book.objects.select_related ('author', 'library')
-    output = '\n '.join([f"{book.title} by {book.author.name}" for book in books])
-    return render (request, 'book_list.html', {'output': output})
-
+def list_books(request):
+   books = Book.objects.all()
+   return render(request, 'relationship_app/list_books.html', {'books': books})
 
 class LibraryDetailView(View):
     model = Library
