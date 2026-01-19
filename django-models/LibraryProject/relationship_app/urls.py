@@ -32,4 +32,7 @@ urlpatterns = [
     path("admin-role/", views.admin_view, name="admin-view"),
     path("librarian-role/", views.librarian_view, name="librarian-view"),
     path("member-role/", views.member_view, name="member-view"),
+    path("books/add_book/", views.add_book, name="add-book"),
+    path("books/<int:pk>/edit_book/", views.edit_book, name="edit-book"),
+    path("books/<int:pk>/delete_book/", views.delete_book, name="delete-book"),
 ]
