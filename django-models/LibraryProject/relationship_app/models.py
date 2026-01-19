@@ -29,7 +29,7 @@ class Librarian(models.Model):
     def __str__(self):
         return self.name
 
-class Userprofile(models.Model):
+class UserProfile(models.Model):
     ROLE_CHOICES = (
         ('Admin', 'Admin'),
         ('librarian', 'Librarian'),
@@ -40,3 +40,4 @@ class Userprofile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
+        
