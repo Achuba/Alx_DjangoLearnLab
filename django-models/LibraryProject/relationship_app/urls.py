@@ -19,6 +19,7 @@ from django.urls import path , include
 from relationship_app.views import book_list_view, LibraryDetailView, list_books
 from .views import list_books
 from .views import LoginView, LogoutView, register
+from . import views
 
 urlpatterns = [
     path("", include("relationship_app.urls")),
@@ -27,5 +28,5 @@ urlpatterns = [
     path("library/<int:pk>/", LibraryDetailView.as_view(), name="library-detail"),
     path("login/", LoginView.as_view(template_name="relationship_app/login.html"), name="login"),
     path("logout/", LogoutView.as_view(template_name="relationship_app/logout.html"), name="logout"),
-    path("register/", register, name="register"),
+    path("register/", views.register, name="register"),
 ]
