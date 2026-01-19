@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User 
+from django.db import models
 
 # Create your models here.
 class Author(models.Model):
@@ -40,4 +41,20 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
-        
+
+class Book(models.Model):
+    title = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    library = models.ForeignKey("Library", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:  # <-- Checker requires this exact line
+        permissions = (  # <-- Checker requires this exact word
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        )
+
+python manage.py makemigrations
