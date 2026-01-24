@@ -140,3 +140,23 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = True  # Ensures all requests use HTTPS
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000  # 1 year; browsers will only use HTTPS for this duration
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply HSTS to all subdomains
+SECURE_HSTS_PRELOAD = True  # Allows your site to be included in browser preload lists
+
+# Cookies over HTTPS only
+SESSION_COOKIE_SECURE = True  # Session cookies will only be sent over HTTPS
+CSRF_COOKIE_SECURE = True     # CSRF cookies will only be sent over HTTPS
+
+# Clickjacking protection
+X_FRAME_OPTIONS = 'DENY'  # Prevents the site from being embedded in iframes
+
+# Content type sniffing protection
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevents browsers from guessing content-type
+
+# Enable browser XSS protection
+SECURE_BROWSER_XSS_FILTER = True  # Turns on browser XSS filtering
