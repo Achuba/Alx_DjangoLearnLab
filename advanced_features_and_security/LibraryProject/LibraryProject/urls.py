@@ -17,11 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from django.shortcuts import redirect
-from relationship_app.views import LibraryDetailView, list_books
+from bookshelf.views import LibraryDetailView, list_books
 
 urlpatterns = [
-    path("", lambda request: redirect("list-books")),
+    path("", include("bookshelf.urls")),
     path('admin/', admin.site.urls),
     path("books/", list_books, name="list-books"),
     path("library/<int:pk>/", LibraryDetailView.as_view(), name="library-detail"),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

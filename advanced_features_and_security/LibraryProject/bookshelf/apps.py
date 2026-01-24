@@ -1,12 +1,11 @@
 from django.apps import AppConfig
 
 
-class RelationshipAppConfig(AppConfig):
-    name = 'relationship_app'
+class BookshelfConfig(AppConfig):
+    name = 'bookshelf'
 
-class RelationshipAppConfig(AppConfig):
+class BookshelfConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "relationship_app"
-
+    name = "bookshelf"
     def ready(self):
-        import relationship_app.signals
+        import bookshelf.signals

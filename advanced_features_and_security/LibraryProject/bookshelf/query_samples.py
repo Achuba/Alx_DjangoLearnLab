@@ -3,7 +3,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_models.settings")
 import django 
 django.setup()
 
-from relationship_app.models import Author, Book, Library, Librarian
+from bookshelf.models import Author, Book, Library, Librarian
 
 
 def query_books_by_author(author_name):
