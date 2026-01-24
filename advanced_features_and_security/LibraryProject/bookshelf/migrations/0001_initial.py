@@ -60,7 +60,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=100)),
-                ('library', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='relationship_app.library')),
+                ('library', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='bookshelf.library')),
             ],
         ),
         migrations.CreateModel(
@@ -68,8 +68,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=255)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='relationship_app.author')),
-                ('library', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='relationship_app.library')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bookshelf.author')),
+                ('library', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='bookshelf.library')),
             ],
             options={
                 'permissions': (('can_add_book', 'Can add book'), ('can_change_book', 'Can change book'), ('can_delete_book', 'Can delete book')),

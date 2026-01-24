@@ -19,13 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from relationship_app import views
-from relationship_app.views import LibraryDetailView
+from bookshelf import views
+from bookshelf.views import LibraryDetailView
 
 
 
 urlpatterns = [
-    path("", include("relationship_app.urls")),
+    path("", include("bookshelf.urls")),
     path('admin/', admin.site.urls),
     path("books/", views.list_books, name="list-books"),
     path("library/<int:pk>/", LibraryDetailView.as_view(), name="library-detail"),
