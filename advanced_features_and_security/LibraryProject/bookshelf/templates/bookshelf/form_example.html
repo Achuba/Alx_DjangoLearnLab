@@ -1,0 +1,11 @@
+<form method="POST" action="{% url 'add-book' %}">
+    {% csrf_token %}
+    <input type="text" name="title" placeholder="Book Title">
+    <select name="author">
+        <!-- Loop through authors -->
+        {% for author in authors %}
+        <option value="{{ author.id }}">{{ author.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Add Book</button>
+</form>
