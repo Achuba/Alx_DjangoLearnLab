@@ -14,6 +14,8 @@ from django.contrib.auth.decorators import permission_required
 from .models import Book
 from .forms import BookForm
 from django.contrib.auth.decorators import login_required, permission_required
+from .forms import ExampleForm
+
 
 # Create your views here
 def home(request):
@@ -84,17 +86,26 @@ def list_books(request):
     books = Book.objects.all()
     return render(request, 'bookshelf/list_books.html', {'books': books})
 
-@login_required
 @permission_required('bookshelf.can_create', raise_exception=True)
 def add_book(request):
-    if request.method == 'POST':
-        title = request.POST.get('title')
+    authors = Author.objects.all()
+    if request.method == "POST":
+        title = request.POST.get('title', '').strip()
         author_id = request.POST.get('author')
-        library_id = request.POST.get('library')
-        Book.objects.create(title=title, author_id=author_id, library_id=library_id)
-        return redirect('list-books')
-    return render(request, 'bookshelf/add_book.html')
 
+        # Validate inputs
+        if not title or not author_id.isdigit():
+            return render(request, 'bookshelf/form_example.html', {
+                'error': 'Invalid input',
+                'authors': authors
+            })
+
+        # Safe creation using ORM
+        author = Author.objects.get(id=int(author_id))
+        Book.objects.create(title=title, author=author)
+        return redirect('list-books')
+
+    return render(request, 'bookshelf/form_example.html', {'authors': authors})
 @login_required
 @permission_required('bookshelf.can_edit', raise_exception=True)
 def edit_book(request, pk):
@@ -113,3 +124,5 @@ def delete_book(request, pk):
         book.delete()
         return redirect('list-books')
     return render(request, 'bookshelf/delete_book.html', {'book': book})
+
+
