@@ -19,12 +19,14 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+from advanced_features_and_security.LibraryProject.bookshelf.views import book_list
 from bookshelf import views
 from bookshelf.views import LibraryDetailView
 
 
 
 urlpatterns = [
+    
     path("", include("bookshelf.urls")),
     path('admin/', admin.site.urls),
     path("books/", views.list_books, name="list-books"),
@@ -38,4 +40,6 @@ urlpatterns = [
     path("books/add_book/", views.add_book, name="add-book"),
     path("books/<int:pk>/edit_book/", views.edit_book, name="edit-book"),
     path("books/<int:pk>/delete_book/", views.delete_book, name="delete-book"),
+    path('books/', book_list, name='list-books')
+    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
