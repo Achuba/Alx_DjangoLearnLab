@@ -21,8 +21,6 @@ from django.urls import path
 from django.urls import include
 from api.views import BookList
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_DIR)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
